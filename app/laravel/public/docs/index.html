@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css" media="screen" />
+        <link rel="stylesheet" href="css/print.css" media="print" />
+        <script src="js/all.js"></script>
+
+        <link rel="stylesheet" href="css/highlight-darcula.css" media="" />
+        <script src="js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body class="" data-languages="[&quot;bash&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+            <img src="images/navbar.png" alt="-image" class=""/>
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="./collection.json">View Postman Collection</a></li>
+                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: May 17 2021</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>Welcome to my API documentation.</p><h1>Authenticating requests</h1>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header in the form <strong><code>"Basic {credentials}"</code></strong>. The value of <code>{credentials}</code> should be your username/id and your password, joined with a colon (:), and then base64-encoded.</p><h1>User folder management</h1>
+<p>APIs for managing user folders</p>
+<h2>Display a listing of the folders for the authenticated user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/folder" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">[
+    {
+        "id": 1,
+        "name": "My Folder 1",
+        "user_id": 1,
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15",
+        "notes": [
+            {
+                "id": 1,
+                "name": "My note 1",
+                "is_public": 0,
+                "noteable_type": "text",
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "noteable": {
+                    "id": 1,
+                    "content": "text work",
+                    "created_at": "2021-05-17 14:15:15",
+                    "updated_at": "2021-05-17 14:15:15"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "My Folder 2",
+        "user_id": 1,
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15",
+        "notes": [
+            {
+                "id": 2,
+                "name": "My note 1",
+                "is_public": 1,
+                "noteable_type": "list",
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "noteable": {
+                    "id": 2,
+                    "created_at": "2021-05-17 14:15:15",
+                    "updated_at": "2021-05-17 14:15:15",
+                    "items": [
+                        {
+                            "id": 4,
+                            "content": "Cool mine text something space food hobby wine",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        },
+                        {
+                            "id": 5,
+                            "content": "Cool note text work something hobby status folks",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        },
+                        {
+                            "id": 6,
+                            "content": "note mine something space junk food play status",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>folder</code></strong></p>
+<h2>Store a newly created folder in storage for the authenticated user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/folder" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"Folder 1"}'
+</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "name": "Folder 1",
+    "user_id": 2,
+    "updated_at": "2021-05-17 12:58:28",
+    "created_at": "2021-05-17 12:58:28",
+    "id": 7
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>folder</code></strong></p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>name</b></code>&nbsp; <small>string</small>     <br>
+The name of the folder.</p>
+<h2>Display the specified folder.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/folder/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "My Folder 1",
+    "user_id": 1,
+    "created_at": "2021-05-17 14:15:15",
+    "updated_at": "2021-05-17 14:15:15",
+    "notes": [
+        {
+            "id": 1,
+            "name": "My note 1",
+            "is_public": 0,
+            "noteable_type": "text",
+            "created_at": "2021-05-17 14:15:15",
+            "updated_at": "2021-05-17 14:15:15",
+            "noteable": {
+                "id": 1,
+                "content": "text work",
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15"
+            }
+        },
+        {
+            "id": 2,
+            "name": "My note 2",
+            "is_public": 1,
+            "noteable_type": "list",
+            "created_at": "2021-05-17 14:15:15",
+            "updated_at": "2021-05-17 14:15:15",
+            "noteable": {
+                "id": 1,
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "items": [
+                    {
+                        "id": 1,
+                        "content": "Cool note text work something space junk hobby play",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 2,
+                        "content": "note mine text work something space junk status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 3,
+                        "content": "Cool note mine text something food wine status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    }
+                ]
+            }
+        }
+    ]
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>folder/{folder_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<h2>Update the specified folder in storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/folder/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"Cool Folder Name"}'
+</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "Cool Folder Name",
+    "user_id": 2,
+    "created_at": "2021-05-17 10:58:10",
+    "updated_at": "2021-05-17 12:59:15"
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-darkblue">PUT</small>
+<strong><code>folder/{folder_id}</code></strong></p>
+<p><small class="badge badge-purple">PATCH</small>
+<strong><code>folder/{folder_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>name</b></code>&nbsp; <small>string</small>     <br>
+The name of the folder.</p>
+<h2>Remove the specified folder from storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/folder/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success"
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>folder/{folder_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p><h1>User notes management</h1>
+<p>APIs for managing user notes</p>
+<h2>Display a listing of the notes independent of authenticated user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<p>Its sole purpose is to demonstrate the &quot;Filtering&quot; &gt; &quot;By note folder&quot; implementation</p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/notes?folder_id=1&amp;sort=name_asc&amp;query=work&amp;shared=1&amp;per_page=10" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 2,
+            "name": "My note 2",
+            "is_public": 1,
+            "noteable_type": "list",
+            "created_at": "2021-05-17 14:15:15",
+            "updated_at": "2021-05-17 14:15:15",
+            "noteable": {
+                "id": 1,
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "items": [
+                    {
+                        "id": 1,
+                        "content": "Cool note text work something space junk hobby play",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 2,
+                        "content": "note mine text work something space junk status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 3,
+                        "content": "Cool note mine text something food wine status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    }
+                ]
+            }
+        }
+    ],
+    "first_page_url": "http://localhost/notes?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost/notes?page=1",
+    "next_page_url": null,
+    "path": "http://localhost/notes",
+    "per_page": "10",
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>notes</code></strong></p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
+Apply filter by folder id.</p>
+<p><code><b>sort</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply sorting using any of the following values: ['name_asc', 'name_desc', 'shared_first', 'shared_last'].</p>
+<p><code><b>query</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply filter by note text content.</p>
+<p><code><b>shared</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply filter by note visibility.</p>
+<p><code><b>per_page</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply pagination limitation for number of displayed elements on one page.</p>
+<h2>Display a listing of the notes for authenticated user.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/folder/1/note?sort=name_asc&amp;query=work&amp;shared=1&amp;per_page=10" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 2,
+            "name": "My note 2",
+            "is_public": 1,
+            "noteable_type": "list",
+            "created_at": "2021-05-17 14:15:15",
+            "updated_at": "2021-05-17 14:15:15",
+            "laravel_through_key": 1,
+            "noteable": {
+                "id": 1,
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "items": [
+                    {
+                        "id": 1,
+                        "content": "Cool note text work something space junk hobby play",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 2,
+                        "content": "note mine text work something space junk status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 3,
+                        "content": "Cool note mine text something food wine status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    }
+                ]
+            }
+        }
+    ],
+    "first_page_url": "http://localhost/folder/1/note?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost/folder/1/note?page=1",
+    "next_page_url": null,
+    "path": "http://localhost/folder/1/note",
+    "per_page": "10",
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>folder/{folder_id}/note</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+<p><code><b>sort</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
+Apply sorting using any of the following values: ['name_asc', 'name_desc', 'shared_first', 'shared_last'].</p>
+<p><code><b>query</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply filter by note text content.</p>
+<p><code><b>shared</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply filter by note visibility.</p>
+<p><code><b>per_page</b></code>&nbsp; <small>string</small> <i>optional</i> <br>
+Apply pagination limitation for number of displayed elements on one page.</p>
+<h2>Store a newly created note in storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request for <code>noteable_type:"list"</code>:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/folder/1/note" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"A note","is_public":1,"noteable_type":"list","noteable":{"items":[{"content":"Item 1"}]}}'
+</code></pre>
+<blockquote>
+<p>Example response for <code>noteable_type</code>:&quot;list&quot;:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 17,
+    "name": "A note",
+    "is_public": 1,
+    "noteable_type": "list",
+    "created_at": "2021-05-17 15:56:30",
+    "updated_at": "2021-05-17 15:56:30",
+    "noteable": {
+        "id": 13,
+        "created_at": "2021-05-17 15:56:30",
+        "updated_at": "2021-05-17 15:56:30",
+        "items": [
+            {
+                "id": 21,
+                "content": "Item 1",
+                "note_list_id": 13,
+                "created_at": "2021-05-17 15:56:30",
+                "updated_at": "2021-05-17 15:56:30"
+            }
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example request for <code>noteable_type:"text"</code>:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/folder/1/note" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"A note","is_public":1,"noteable_type":"text","noteable":{"content":"Cool note content"}}'</code></pre>
+<blockquote>
+<p>Example response for <code>noteable_type</code>:&quot;text&quot;:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 20,
+    "name": "A note",
+    "is_public": 1,
+    "noteable_type": "text",
+    "created_at": "2021-05-17 16:01:16",
+    "updated_at": "2021-05-17 16:01:16",
+    "noteable": {
+        "id": 7,
+        "content": "Cool note content",
+        "created_at": "2021-05-17 16:01:16",
+        "updated_at": "2021-05-17 16:01:16"
+    }
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-black">POST</small>
+<strong><code>folder/{folder_id}/note</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>name</b></code>&nbsp; <small>string</small>     <br>
+The name of the note.</p>
+<p><code><b>is_public</b></code>&nbsp; <small>integer</small> <i>optional</i> <br>
+The visibility status of the note, <b>default: false</b>.</p>
+<p><code><b>noteable_type</b></code>&nbsp; <small>string</small> <br>
+The value must be one of <code>text</code> or <code>list</code>.</p>
+<p><code><b>noteable</b></code>&nbsp; <small>object</small> <br>
+Object which holds note content data</p>
+<h3>If <code>noteable_type</code> is set to <code>text</code> following rules apply</h3>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>noteable.content</b></code>&nbsp; <small>string</small> <br>
+Text content of the text note</p>
+<h3>If <code>noteable_type</code> is set to <code>list</code> following rules apply</h3>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>noteable.items[]</b></code>&nbsp; <small>array</small> <br>
+Array of items for the list note</p>
+<p><code><b>noteable.items[].content</b></code>&nbsp; <small>string</small><br>
+Text content of each list item</p>
+<h2>Display the specified note.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/folder/1/note/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "My note 1",
+    "is_public": 0,
+    "noteable_type": "text",
+    "created_at": "2021-05-17 14:15:15",
+    "updated_at": "2021-05-17 14:15:15",
+    "noteable": {
+        "id": 1,
+        "content": "text work",
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15"
+    }
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-green">GET</small>
+<strong><code>folder/{folder_id}/note/{note_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<p><code><b>note_id</b></code>&nbsp; <small>string</small> <br>
+The id of the note.</p>
+<h2>Update the specified note in storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request for <code>noteable_type:"list"</code>:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/folder/1/note/2" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":2,"name":"My note 2","is_public":0,"noteable_type":"list","noteable":{"id":1,"items":[{"id":1,"content":"Cool text work something food play"},{"id":2,"content":"work space food play wine status folks"},{"id":3,"content":"Cool note mine play wine status folks"}]}}'
+</code></pre>
+<blockquote>
+<p>Example response for <code>noteable_type</code>:&quot;list&quot;:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 2,
+    "name": "My note 2",
+    "is_public": 0,
+    "noteable_type": "list",
+    "created_at": "2021-05-17 21:16:11",
+    "updated_at": "2021-05-17 21:16:11",
+    "noteable": {
+        "id": 1,
+        "created_at": "2021-05-17 21:16:11",
+        "updated_at": "2021-05-17 21:16:11",
+        "items": [
+            {
+                "id": 1,
+                "content": "Cool text work something food play",
+                "note_list_id": 1,
+                "created_at": "2021-05-17 21:16:11",
+                "updated_at": "2021-05-17 21:18:55"
+            },
+            {
+                "id": 2,
+                "content": "work space food play wine status folks",
+                "note_list_id": 1,
+                "created_at": "2021-05-17 21:16:11",
+                "updated_at": "2021-05-17 21:16:11"
+            },
+            {
+                "id": 3,
+                "content": "Cool note mine play wine status folks",
+                "note_list_id": 1,
+                "created_at": "2021-05-17 21:16:11",
+                "updated_at": "2021-05-17 21:16:11"
+            }
+        ]
+    }
+}</code></pre>
+<blockquote>
+<p>Example request for <code>noteable_type:"text"</code>:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/folder/1/note/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"id":1,"name":"My note 1","is_public":0,"noteable_type":"text","noteable":{"id":1,"content":"text hobby play wine"}}'</code></pre>
+<blockquote>
+<p>Example response for <code>noteable_type</code>:&quot;text&quot;:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 1,
+    "name": "My note 1",
+    "is_public": 0,
+    "noteable_type": "text",
+    "created_at": "2021-05-17 21:16:11",
+    "updated_at": "2021-05-17 21:16:11",
+    "noteable": {
+        "id": 1,
+        "content": "text hobby play wine",
+        "created_at": "2021-05-17 21:16:11",
+        "updated_at": "2021-05-17 21:16:11"
+    }
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-darkblue">PUT</small>
+<strong><code>folder/{folder_id}/note/{note_id}</code></strong></p>
+<p><small class="badge badge-purple">PATCH</small>
+<strong><code>folder/{folder_id}/note/{note_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<p><code><b>id</b></code>&nbsp; <small>string</small> <br>
+The id of the note.</p>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>name</b></code>&nbsp; <small>string</small>         <i>optional</i>    <br>
+The name of the note.</p>
+<p><code><b>is_public</b></code>&nbsp; <small>integer</small> <i>optional</i> <br>
+The visibility status of the note.</p>
+<p><code><b>noteable</b></code>&nbsp; <small>object</small> <br>
+Object which holds note content data</p>
+<h3>If <code>noteable_type</code> is set to <code>text</code> following rules apply</h3>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>noteable.content</b></code>&nbsp; <small>string</small> <br>
+Text content of the text note</p>
+<h3>If <code>noteable_type</code> is set to <code>list</code> following rules apply</h3>
+<h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+<p><code><b>noteable.items[]</b></code>&nbsp; <small>array</small> <br>
+Array of items for the list note</p>
+<p><code><b>noteable.items[].content</b></code>&nbsp; <small>string</small><br>
+Text content of each list item</p>
+<h2>Remove the specified note from storage.</h2>
+<p><small class="badge badge-darkred">requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/folder/1/note/1" \
+    -H "Authorization: Basic {YOUR_AUTH_KEY}" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<blockquote>
+<p>Example response:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "status": "success"
+}</code></pre>
+<h3>Request</h3>
+<p><small class="badge badge-red">DELETE</small>
+<strong><code>folder/{folder_id}/note/{note_id}</code></strong></p>
+<h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+<p><code><b>folder_id</b></code>&nbsp; <small>string</small>     <br>
+The id of the folder.</p>
+<p><code><b>note_id</b></code>&nbsp; <small>string</small> <br>
+The id of the note.</p>
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var languages = ["bash"];
+        setupLanguages(languages);
+    });
+</script>
+</body>
+</html>

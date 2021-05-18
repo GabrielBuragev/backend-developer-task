@@ -1,6 +1,5 @@
 # Database
 
-Provide a file for database import with prepared mock data for:
-* users
-* folders
-* notes
+### Database migrations
+
+Migrations and seeds are handled by framework. Take a look at the [instructions](../instructions/README.md) for setup.

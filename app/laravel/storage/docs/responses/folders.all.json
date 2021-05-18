@@ -1,0 +1,70 @@
+[
+    {
+        "id": 1,
+        "name": "My Folder 1",
+        "user_id": 1,
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15",
+        "notes": [
+            {
+                "id": 1,
+                "name": "My note 1",
+                "is_public": 0,
+                "noteable_type": "text",
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "noteable": {
+                    "id": 1,
+                    "content": "text work",
+                    "created_at": "2021-05-17 14:15:15",
+                    "updated_at": "2021-05-17 14:15:15"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "My Folder 2",
+        "user_id": 1,
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15",
+        "notes": [
+            {
+                "id": 2,
+                "name": "My note 1",
+                "is_public": 1,
+                "noteable_type": "list",
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "noteable": {
+                    "id": 2,
+                    "created_at": "2021-05-17 14:15:15",
+                    "updated_at": "2021-05-17 14:15:15",
+                    "items": [
+                        {
+                            "id": 4,
+                            "content": "Cool mine text something space food hobby wine",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        },
+                        {
+                            "id": 5,
+                            "content": "Cool note text work something hobby status folks",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        },
+                        {
+                            "id": 6,
+                            "content": "note mine something space junk food play status",
+                            "note_list_id": 2,
+                            "created_at": "2021-05-17 14:15:15",
+                            "updated_at": "2021-05-17 14:15:15"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]

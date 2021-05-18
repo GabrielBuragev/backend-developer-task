@@ -1,0 +1,52 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 2,
+            "name": "My note 2",
+            "is_public": 1,
+            "noteable_type": "list",
+            "created_at": "2021-05-17 14:15:15",
+            "updated_at": "2021-05-17 14:15:15",
+            "laravel_through_key": 1,
+            "noteable": {
+                "id": 1,
+                "created_at": "2021-05-17 14:15:15",
+                "updated_at": "2021-05-17 14:15:15",
+                "items": [
+                    {
+                        "id": 1,
+                        "content": "Cool note text work something space junk hobby play",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 2,
+                        "content": "note mine text work something space junk status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    },
+                    {
+                        "id": 3,
+                        "content": "Cool note mine text something food wine status folks",
+                        "note_list_id": 1,
+                        "created_at": "2021-05-17 14:15:15",
+                        "updated_at": "2021-05-17 14:15:15"
+                    }
+                ]
+            }
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/folder\/1\/note?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/localhost\/folder\/1\/note?page=1",
+    "next_page_url": null,
+    "path": "http:\/\/localhost\/folder\/1\/note",
+    "per_page": "10",
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}

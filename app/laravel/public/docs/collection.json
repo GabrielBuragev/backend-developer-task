@@ -1,0 +1,517 @@
+{
+    "variable": [],
+    "info": {
+        "name": "Laravel API",
+        "_postman_id": "25ef262a-2c3a-4e0e-b8bd-153d82891c7d",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "User folder management",
+            "description": "\nAPIs for managing user folders",
+            "item": [
+                {
+                    "name": "Display a listing of the folders for the authenticated user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store a newly created folder in storage for the authenticated user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Folder 1\"\n}"
+                        },
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified folder.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "2",
+                                    "description": "The id of the folder."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified folder in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "1",
+                                    "description": "The id of the folder."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Cool Folder Name\"\n}"
+                        },
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified folder from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "1",
+                                    "description": "The id of the folder."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "User notes management",
+            "description": "\nAPIs for managing user notes",
+            "item": [
+                {
+                    "name": "Display a listing of the notes independent of authenticated user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "notes",
+                            "query": [
+                                {
+                                    "key": "folder_id",
+                                    "value": "1",
+                                    "description": "Apply filter by folder id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "name_asc",
+                                    "description": "Apply sorting using any of the following values: ['name_asc', 'name_desc', 'shared_first', 'shared_last'].",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "query",
+                                    "value": "work",
+                                    "description": "Apply filter by note text content.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "shared",
+                                    "value": "1",
+                                    "description": "Apply filter by note visibility.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Apply pagination limitation for number of displayed elements on one page.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/localhost\/notes?sort=name_asc&query=a&shared=1&per_page=10"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Its sole purpose is to demonstrate the \"Filtering\" > \"By note folder\" implementation",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display a listing of the notes for authenticated user.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id\/note",
+                            "query": [
+                                {
+                                    "key": "sort",
+                                    "value": "name_asc",
+                                    "description": "Apply sorting using any of the following values: ['name_asc', 'name_desc', 'shared_first', 'shared_last'].",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "query",
+                                    "value": "work",
+                                    "description": "Apply filter by note text content.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "shared",
+                                    "value": "1",
+                                    "description": "Apply filter by note visibility.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10",
+                                    "description": "Apply pagination limitation for number of displayed elements on one page.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id\/note?sort=name_asc&query=a&shared=1&per_page=10",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "1",
+                                    "description": "The id of the folder."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Store a newly created note in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id\/note",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id\/note",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "2",
+                                    "description": "The id of the folder."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"A note\",\"is_public\":1,\"noteable_type\":\"list\",\"noteable\":{\"items\":[{\"content\":\"Item 1\"}]}}"
+                        },
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified note.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id\/note\/:note_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id\/note\/:note_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "2",
+                                    "description": "The id of the folder."
+                                },
+                                {
+                                    "id": "note_id",
+                                    "key": "note_id",
+                                    "value": "6",
+                                    "description": "The id of the note."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update the specified note in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id\/note\/:note_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id\/note\/:note_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "2",
+                                    "description": "The id of the folder."
+                                },
+                                {
+                                    "id": "note_id",
+                                    "key": "note_id",
+                                    "value": "4",
+                                    "description": "The id of the note."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":2,\"name\":\"My note 2\",\"is_public\":0,\"noteable_type\":\"list\",\"noteable\":{\"id\":1,\"items\":[{\"id\":1,\"content\":\"Cool text work something food play\"},{\"id\":2,\"content\":\"work space food play wine status folks\"},{\"id\":3,\"content\":\"Cool note mine play wine status folks\"}]}}"
+                        },
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified note from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "localhost",
+                            "path": "folder\/:folder_id\/note\/:note_id",
+                            "query": [],
+                            "raw": "http:\/\/localhost\/folder\/:folder_id\/note\/:note_id",
+                            "variable": [
+                                {
+                                    "id": "folder_id",
+                                    "key": "folder_id",
+                                    "value": "2",
+                                    "description": "The id of the folder."
+                                },
+                                {
+                                    "id": "note_id",
+                                    "key": "note_id",
+                                    "value": "4",
+                                    "description": "The id of the note."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {YOUR_AUTH_KEY}"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": null
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "basic"
+    }
+}

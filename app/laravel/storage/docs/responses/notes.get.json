@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "name": "My note 1",
+    "is_public": 0,
+    "noteable_type": "text",
+    "created_at": "2021-05-17 14:15:15",
+    "updated_at": "2021-05-17 14:15:15",
+    "noteable": {
+        "id": 1,
+        "content": "text work",
+        "created_at": "2021-05-17 14:15:15",
+        "updated_at": "2021-05-17 14:15:15"
+    }
+}

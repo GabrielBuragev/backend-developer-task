@@ -1,3 +1,6 @@
-# Credentials
+# User credentials for testing API
 
-Provide a file with a list of usernames and passwords that we can use for testing.
+| Username |     Password     |
+| -------- | :--------------: |
+| john@doe |  strongpassword  |
+| jane@doe | strongerpassword |
